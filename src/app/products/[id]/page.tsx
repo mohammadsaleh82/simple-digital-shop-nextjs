@@ -1,11 +1,13 @@
 import ProductDetail from '@/mudules/products/components/ProductDetails';
-import { DATA } from '@/mudules/products/mock/products';
+import { getProductById } from '@/mudules/products/services';
 
-const data = DATA[0];
-const page = () => {
+const page = async ({ params }: { params: Promise<{ id: string }> }) => {
+  const { id } = await params;
+  const product = await getProductById(id);
+
   return (
     <div>
-      <ProductDetail product={data} />
+      <ProductDetail product={product} />
     </div>
   );
 };

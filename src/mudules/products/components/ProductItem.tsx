@@ -4,23 +4,17 @@ import { Eye, GalleryThumbnails, ShoppingCart } from 'lucide-react'; // Pro-tip:
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { ProductsWithImages } from '@/types';
 
-interface Product {
-  id: number;
-  name: string;
-  category: string;
-  quantity: number;
-  price: number;
-  images: { image: string }[];
-}
+ 
 
 interface ListItemProps {
-  product: Product;
+  product: ProductsWithImages;
 }
 
 export function ProductItem({ product }: ListItemProps) {
   const { id, name, category, quantity, price, images } = product;
-  const isLowStock = quantity > 0 && quantity < 5;
+  const isLowStock = quantity! > 0 && quantity! < 5;
 
   return (
     <Card className="group relative overflow-hidden rounded-xl border-border/50 bg-card transition-all duration-300 hover:shadow-lg hover:shadow-primary/5">
@@ -58,7 +52,7 @@ export function ProductItem({ product }: ListItemProps) {
                 </Link>
               </div>
               <p className="text-xl font-bold tabular-nums text-foreground">
-                ${price.toLocaleString()}
+                ${price!.toLocaleString()}
               </p>
             </div>
             <div className="flex justify-end">
@@ -71,7 +65,7 @@ export function ProductItem({ product }: ListItemProps) {
             <div className="mt-2 flex items-center gap-3">
               <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
                 <span
-                  className={`h-1.5 w-1.5 rounded-full ${quantity > 0 ? 'bg-emerald-500' : 'bg-red-500'}`}
+                  className={`h-1.5 w-1.5 rounded-full ${quantity! > 0 ? 'bg-emerald-500' : 'bg-red-500'}`}
                 />
                 {quantity} units available
               </span>
