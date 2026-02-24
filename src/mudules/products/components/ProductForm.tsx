@@ -16,7 +16,7 @@ import {
   SelectValue,
   Textarea,
 } from '@/components/ui';
-import { Category, Product } from '@/generated/prisma/browser'; 
+import { Category, Product } from '@/generated/prisma/browser';
 import Link from 'next/link';
 
 const ProductForm = ({ product }: { product: Product | null }) => {
@@ -94,7 +94,7 @@ const ProductForm = ({ product }: { product: Product | null }) => {
             {product ? 'Update' : 'Create'} Product
           </Button>
           <Button variant={'outline'} asChild className="w-full cursor-pointer">
-            <Link href={'/dashboard/products'}>Cancel  </Link>
+            <Link href={'/dashboard/products'}>Cancel </Link>
           </Button>
         </CardFooter>
       </Card>

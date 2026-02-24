@@ -1,11 +1,11 @@
-import ProductsDashboardView from "@/mudules/products/views/ProductsDashboardView"
-
- 
+import ProductsDashboardView from '@/mudules/products/views/ProductsDashboardView';
 
 const page = () => {
   return (
-    <div><ProductsDashboardView /></div>
-  )
-}
+    <div>
+      <ProductsDashboardView />
+    </div>
+  );
+};
 
-export default page
+export default page;

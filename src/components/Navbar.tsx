@@ -1,11 +1,11 @@
-import Link from "next/link"
-import { Smartphone, ShoppingCart } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+import Link from 'next/link';
+import { Smartphone, ShoppingCart } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 
 export function Navbar() {
   // Example cart count – replace with real state later
-  const cartItemCount = 3
+  const cartItemCount = 3;
 
   return (
     <nav className="sticky top-0 z-50 border-b bg-background">
@@ -37,5 +37,5 @@ export function Navbar() {
         </div>
       </div>
     </nav>
-  )
+  );
 }

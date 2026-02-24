@@ -5,7 +5,7 @@ const ProductsDashboardView = async () => {
   const products = await getProducts();
   return (
     <div>
-      <ProductTable  products={products}/>
+      <ProductTable products={products} />
     </div>
   );
 };
