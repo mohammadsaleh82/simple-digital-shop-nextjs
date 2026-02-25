@@ -1,3 +1,4 @@
+'use client';
 import {
   Button,
   Table,
@@ -11,8 +12,12 @@ import { ProductsWithImages } from '@/types';
 import { Edit, NewspaperIcon, Trash } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { deleteProduct } from '../services';
 
 const ProductTable = ({ products }: { products: ProductsWithImages[] }) => {
+  const handleDelete = async (id: string) => {
+    await deleteProduct(id);
+  };
   return (
     <div className="flex items-center justify-center w-full h-full flex-col gap-4  shadow-xl border-2  bg-gray-100 rounded-lg">
       <div className="flex my-10 items-center justify-between w-full px-4">
@@ -56,7 +61,7 @@ const ProductTable = ({ products }: { products: ProductsWithImages[] }) => {
                       <Edit />
                     </Link>
                   </Button>
-                  <Button size={'sm'}>
+                  <Button onClick={() => handleDelete(product.id)} size={'sm'}>
                     <Trash />
                   </Button>
                 </TableCell>

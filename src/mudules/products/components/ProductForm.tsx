@@ -18,12 +18,24 @@ import {
 } from '@/components/ui';
 import { Category, Product } from '@/generated/prisma/browser';
 import Link from 'next/link';
+import { useForm } from 'react-hook-form';
+import { upsertProduct } from '../services';
+import { redirect } from 'next/navigation';
 
 const ProductForm = ({ product }: { product: Product | null }) => {
-  console.log(Object.values(Category));
-
+  const { register, setValue, handleSubmit } = useForm<Product>();
+  const onSubmit = handleSubmit(async (data) => {
+    const payload = {
+      ...data,
+      id: product?.id,
+      price: parseFloat(data.price!.toString()) || 0,
+      quantity: parseInt(data.quantity!.toString()) || 0,
+    };
+    await upsertProduct(payload as Product);
+    redirect('/dashboard/products');
+  });
   return (
-    <form>
+    <form onSubmit={onSubmit}>
       <Card className="w-full max-w-sm mx-auto">
         <CardHeader>
           <CardTitle>{product ? 'Edit' : 'New'} Product</CardTitle>
@@ -33,6 +45,7 @@ const ProductForm = ({ product }: { product: Product | null }) => {
             <Field>
               <FieldLabel htmlFor="name">Product Name</FieldLabel>
               <Input
+                {...register('name', { required: true })}
                 type="text"
                 defaultValue={product?.name || ''}
                 id="name"
@@ -42,6 +55,7 @@ const ProductForm = ({ product }: { product: Product | null }) => {
             <Field>
               <FieldLabel htmlFor="description">Description</FieldLabel>
               <Textarea
+                {...register('description')}
                 id="description"
                 defaultValue={product?.description || ''}
                 placeholder="description"
@@ -50,6 +64,7 @@ const ProductForm = ({ product }: { product: Product | null }) => {
             <Field>
               <FieldLabel htmlFor="price">Price</FieldLabel>
               <Input
+                {...register('price')}
                 type="number"
                 defaultValue={product?.price || 0}
                 id="price"
@@ -59,6 +74,7 @@ const ProductForm = ({ product }: { product: Product | null }) => {
             <Field>
               <FieldLabel htmlFor="quantity">Quantity</FieldLabel>
               <Input
+                {...register('quantity')}
                 type="number"
                 defaultValue={product?.quantity || 0}
                 id="quantity"
@@ -68,6 +84,9 @@ const ProductForm = ({ product }: { product: Product | null }) => {
             <Field>
               <FieldLabel>Category</FieldLabel>
               <Select
+                onValueChange={(value) =>
+                  setValue('category', value as Category)
+                }
                 required
                 defaultValue={product?.category || Category.Others}
               >
