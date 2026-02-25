@@ -1,6 +1,6 @@
 import { prisma } from '@/lib/prisma';
 import { existsSync } from 'fs';
-import {   mkdir, unlink, writeFile } from 'fs/promises';
+import { mkdir, unlink, writeFile } from 'fs/promises';
 import { NextRequest, NextResponse } from 'next/server';
 import path from 'path';
 

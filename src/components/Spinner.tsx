@@ -6,10 +6,10 @@ interface SpinnerProps {
   className?: string;
 }
 
-export const Spinner: React.FC<SpinnerProps> = ({ 
-  size = 'md', 
-  color = 'border-blue-600', 
-  className = '' 
+export const Spinner: React.FC<SpinnerProps> = ({
+  size = 'md',
+  color = 'border-blue-600',
+  className = '',
 }) => {
   const sizeClasses = {
     sm: 'h-4 w-4 border-2',

@@ -37,7 +37,7 @@ export const upsertProduct = async (prod: Product) => {
     });
     return updated;
   } else {
-    const { id, ...rest } = prod;
+    const { ...rest } = prod;
     const created = await prisma.product.create({
       data: rest,
     });

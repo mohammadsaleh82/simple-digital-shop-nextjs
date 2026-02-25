@@ -1,7 +1,7 @@
 'use client';
 import { Button, Field, FieldLabel, Input } from '@/components/ui';
 import { PrismaType } from '@/lib/prisma';
-import { CircleX, Citrus, Upload } from 'lucide-react';
+import { CircleX, Upload } from 'lucide-react';
 import Image from 'next/image';
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 import {
@@ -33,16 +33,16 @@ const UploadImage: FC<{ productId: string }> = ({ productId }) => {
       setImage(file);
     }
   };
-  const fetchImages = async () => {
-    const data = await getImages(productId);
-    setImages(data);
-  };
 
   const handleDeleteImage = async (id: string) => {
     await deleteImage(id);
     setImages((prev) => prev?.filter((image) => image.id !== id) || null);
   };
   useEffect(() => {
+    const fetchImages = async () => {
+      const data = await getImages(productId);
+      setImages(data);
+    };
     fetchImages();
   }, [productId]);
 
