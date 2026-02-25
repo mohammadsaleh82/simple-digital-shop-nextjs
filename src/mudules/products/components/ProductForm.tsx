@@ -21,6 +21,7 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { upsertProduct } from '../services';
 import { redirect } from 'next/navigation';
+import UploadeImage from './UploadImage';
 
 const ProductForm = ({ product }: { product: Product | null }) => {
   const { register, setValue, handleSubmit } = useForm<Product>();
@@ -115,6 +116,8 @@ const ProductForm = ({ product }: { product: Product | null }) => {
           <Button variant={'outline'} asChild className="w-full cursor-pointer">
             <Link href={'/dashboard/products'}>Cancel </Link>
           </Button>
+
+          {product && product.id && <UploadeImage productId={product.id} />}
         </CardFooter>
       </Card>
     </form>
